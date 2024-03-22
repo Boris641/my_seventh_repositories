@@ -10,7 +10,7 @@ pygame.display.set_caption("Игра Тир")
 icon = pygame.image.load("img/shutery.jpg")
 pygame.display.set_icon(icon)
 
-target_ing = pygame.image.load("ing/target.png")
+target_ing = pygame.image.load("img/target.png")
 target_width = 80
 target_heigth = 80
 
@@ -21,7 +21,18 @@ color = (random.randint(a=0, b=255), random.randint(a=0, b=255), random.randint(
 
 running = True
 while running:
-    pass
+    screen.fill(color)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_x, mouse_y = pygame.mouse.get_pos()
+            if target_x < mouse_x < target_x + target_width and target_y < mouse_y < target_y + target_heigth:
+                target_x = random.randint(0, SCREEN_WIDTH - target_width)
+                target_y = random.randint(0, SCREEN_HEIGTH - target_heigth)
+    screen.blit(target_ing, (target_x, target_y))
+
+    pygame.display.update()
 
 pygame.quit()
 
