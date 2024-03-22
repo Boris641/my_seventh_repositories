@@ -19,9 +19,11 @@ target_y = random.randint(0, SCREEN_HEIGTH - target_heigth)
 
 color = (random.randint(a=0, b=255), random.randint(a=0, b=255), random.randint(a=0, b=255))
 
+# Очки за попадания
 score = 0
-score_font = pygame.font.Font(None,36)
 
+# Шрифт для вывода очков
+score_font = pygame.font.Font(None, 36)
 
 running = True
 while running:
@@ -34,14 +36,14 @@ while running:
             if target_x < mouse_x < target_x + target_width and target_y < mouse_y < target_y + target_heigth:
                 target_x = random.randint(0, SCREEN_WIDTH - target_width)
                 target_y = random.randint(0, SCREEN_HEIGTH - target_heigth)
-                score += 1
+                score += 1  # Увеличиваем счет на 1 после попадания
+
     screen.blit(target_ing, (target_x, target_y))
 
-    score_text = score_font.render("Количество очков : "+str(score), True,(255,255,255))
+    # Отображение счёта
+    score_text = score_font.render("Очки: " + str(score), True, (255, 255, 255))
     screen.blit(score_text, (10, 10))
 
     pygame.display.update()
 
 pygame.quit()
-
-
